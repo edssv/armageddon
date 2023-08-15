@@ -1,0 +1,18 @@
+.selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.selector button {
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.selector button.active {
+  font-weight: 700;
+  text-decoration: none;
+  cursor: default;
+}

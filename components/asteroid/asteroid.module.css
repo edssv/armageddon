@@ -1,0 +1,77 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.center {
+  display: flex;
+  gap: 8px;
+}
+
+.distance {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.line {
+  position: relative;
+  width: auto;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.line::before {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  content: '';
+  border-style: solid;
+  border-width: 3px 5px 3px 0;
+  border-color: transparent rgba(255, 255, 255, 0.5) transparent transparent;
+}
+
+.line::after {
+  position: absolute;
+  top: -3px;
+  right: 0;
+  content: '';
+  border-style: solid;
+  border-width: 3px 0 3px 5px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.5);
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info .text {
+  display: flex;
+  flex-direction: column;
+}
+
+.info .text .name {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttonSkeleton {
+  width: 88px;
+  height: 24px;
+  border-radius: 16px;
+}

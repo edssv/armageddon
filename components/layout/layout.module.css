@@ -1,0 +1,45 @@
+.root {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  height: 100%;
+}
+
+.main {
+  position: relative;
+  max-width: 402px;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+
+.earth {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: auto;
+  height: 620px;
+  z-index: -1;
+}
+
+@media (max-width: 1240px) {
+  .earth {
+    height: 436px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main {
+    padding-left: 56px;
+  }
+
+  .earth {
+    left: -120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .earth {
+    left: -230px;
+  }
+}
