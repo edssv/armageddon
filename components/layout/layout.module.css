@@ -6,17 +6,17 @@
 
 .main {
   position: relative;
-  max-width: 402px;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
   height: 100%;
-  margin: 0 auto;
-  margin-top: 16px;
+  padding: 0 24px 0 72px;
 }
 
 .earth {
   position: fixed;
-  top: 50%;
+  top: 138px;
   left: 0;
-  transform: translateY(-50%);
   width: auto;
   height: 620px;
   z-index: -1;

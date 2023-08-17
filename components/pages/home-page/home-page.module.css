@@ -1,0 +1,17 @@
+.root {
+  display: grid;
+  grid-template-columns: minmax(279px, 402px);
+  gap: 24px;
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.asteroidList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  list-style: none;
+}

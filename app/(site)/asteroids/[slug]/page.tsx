@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Asteroid } from '@/services/asteroid/asteroid.helper';
 import { AsteroidService } from '@/services/asteroid/asteroid.service';
@@ -6,8 +7,10 @@ import { AsteroidService } from '@/services/asteroid/asteroid.service';
 import { env } from '@/env.mjs';
 import { absoluteUrl } from '@/lib/utils';
 import { CloseAproach } from '@/components/close-approach/close-approach';
+import { Selector } from '@/components/selector/selector';
 
 import styles from './page.module.css';
+import { AsteroidPage } from '@/components/pages/asteroid-page/asteroid-page';
 
 interface AsteroidPageProps {
   params: {
@@ -69,23 +72,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function AsteroidPage({ params }: AsteroidPageProps) {
+export default async function Asteroid({ params }: AsteroidPageProps) {
   const data = await getAsteroidFromParams(params);
-  console.log(data.close_approach_data[0]);
 
-  return (
-    <div className="">
-      <h1>{data.name}</h1>
-      <div>
-        <span>Сближения:</span>
-        <ul className={styles.closeApproachList}>
-          {data.close_approach_data.map((item, i) => (
-            <li className="" key={i}>
-              <CloseAproach closeApproach={item} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
+  return <AsteroidPage data={data}/>;
 }

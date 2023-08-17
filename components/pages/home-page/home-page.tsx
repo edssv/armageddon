@@ -1,23 +1,24 @@
 'use client';
 
-import { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { GetAsteroidListResponse } from '@/services/asteroid/asteroid.helper';
 import { AsteroidService } from '@/services/asteroid/asteroid.service';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 import { AppContext } from '@/components/providers/context-provider';
+import { Selector } from '@/components/selector/selector';
 
 import { Asteroid } from '../../asteroid/asteroid';
-import styles from './asteroid-list.module.css';
-import { Selector } from './selector/selector';
+import { Cart } from '../cart/cart';
+import styles from './home-page.module.css';
 
-export function AsteroidList({
+export function HomePage({
   initialData,
 }: {
   initialData: GetAsteroidListResponse;
 }) {
-  const { cart, setCart } = useContext(AppContext);
+  const { cart } = useContext(AppContext);
   const [distanceType, setDistanceType] = useState('kilometers');
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     ['query'],
@@ -52,39 +53,39 @@ export function AsteroidList({
   useEffect(() => {
     if (entry?.isIntersecting && data?.pages[data.pages.length - 1].links.next)
       fetchNextPage();
-  }, [entry, fetchNextPage, initialData, asteroids]);
+  }, [entry, fetchNextPage, initialData, asteroids, data?.pages]);
 
   return (
-    <div className={styles.root}>
-      <Selector active={distanceType} setActive={setDistanceType} />
-      <ul className={styles.root}>
-        {asteroids?.map((asteroid, i) => {
-          const isInCart = cart?.length
-            ? !!cart?.find((cartItem) => cartItem.id === asteroid.id)
-            : false;
+    <>
+      <div className={styles.root}>
+        <div className={styles.top}>
+          <h1 className={styles.headline}>Ближайшие подлёты астероидов</h1>
+          <Selector active={distanceType} setActive={setDistanceType} />
+        </div>
+        <ul className={styles.asteroidList}>
+          {asteroids?.map((asteroid, i) => {
+            const isInCart = cart?.length
+              ? !!cart?.find((cartItem) => cartItem.id === asteroid.id)
+              : false;
 
-          return (
-            <li key={asteroid.id} ref={i === asteroids.length - 1 ? ref : null}>
-              <Asteroid
-                asteroid={asteroid}
-                distanceType={distanceType}
-                isInCart={isInCart}
-                onClick={
-                  isInCart
-                    ? () =>
-                        setCart(
-                          cart?.filter(
-                            (cartItem) => cartItem.id !== asteroid.id
-                          )
-                        )
-                    : () => setCart([...cart, asteroid])
-                }
-              />
-            </li>
-          );
-        })}
-      </ul>
-      {isFetchingNextPage && <div>Ищем больше астероидов...</div>}
-    </div>
+            return (
+              <li
+                key={asteroid.id}
+                ref={i === asteroids.length - 1 ? ref : null}
+              >
+                <Asteroid
+                  button
+                  asteroid={asteroid}
+                  distanceType={distanceType}
+                  isInCart={isInCart}
+                />
+              </li>
+            );
+          })}
+        </ul>
+        {isFetchingNextPage && <div>Ищем больше астероидов...</div>}
+      </div>
+      <Cart />
+    </>
   );
 }

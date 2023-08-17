@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Asteroid as IAsteroid } from '@/services/asteroid/asteroid.helper';
@@ -5,7 +7,7 @@ import { Asteroid as IAsteroid } from '@/services/asteroid/asteroid.helper';
 import { formatDate, plural } from '@/lib/utils';
 import asteroidImage from '@/assets/images/pngegg.png';
 
-import { Button } from '../ui/button/button';
+import { AddToCartButton } from '../add-to-cart-button/add-to-cart-button';
 import { Skeleton } from '../ui/skeleton/skeleton';
 import styles from './asteroid.module.css';
 
@@ -15,20 +17,20 @@ interface AsteroidProps {
     | IAsteroid['close_approach_data']['0']['miss_distance']['kilometers']
     | IAsteroid['close_approach_data']['0']['miss_distance']['lunar'];
   isInCart?: boolean;
-  onClick?: () => void;
+  button?: boolean;
 }
 
 export function Asteroid({
   asteroid,
   distanceType = 'lunar',
   isInCart,
-  onClick,
+  button = false,
 }: AsteroidProps) {
   const getDistance = () => {
     if (distanceType === 'kilometers') {
-      return `${Number(
-        asteroid.close_approach_data[0].miss_distance.kilometers
-      ).toLocaleString()} км`;
+      return `${asteroid.close_approach_data[0].miss_distance.kilometers
+        .split('.')[0]
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} км`;
     }
 
     if (distanceType === 'lunar') {
@@ -56,7 +58,17 @@ export function Asteroid({
       <div className={styles.center}>
         <div className={styles.distance}>
           <span>{getDistance()}</span>
-          <div className={styles.line} />
+          <svg
+            viewBox="0 0 129 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 3L5 5.88675L5 0.113249L0 3ZM129 3.00001L124 0.113259L124 5.88676L129 3.00001ZM4.5 3.5L124.5 3.50001L124.5 2.50001L4.5 2.5L4.5 3.5Z"
+              fill="white"
+              fill-opacity="0.5"
+            />
+          </svg>
         </div>
         <div className={styles.info}>
           <Image
@@ -81,18 +93,7 @@ export function Asteroid({
         </div>
       </div>
       <div className={styles.bottom}>
-        {!!onClick &&
-          (typeof window === 'undefined' ? (
-            <Skeleton className={styles.buttonSkeleton} />
-          ) : (
-            <Button
-              onClick={() => onClick()}
-              variant={isInCart ? 'tertiary' : 'secondary'}
-            >
-              {isInCart ? 'В КОРЗИНЕ' : 'ЗАКАЗАТЬ'}
-            </Button>
-          ))}
-
+        {button && <AddToCartButton asteroid={asteroid} isInCart={isInCart} />}
         {asteroid.is_potentially_hazardous_asteroid && <div>⚠️ Опасен</div>}
       </div>
     </div>

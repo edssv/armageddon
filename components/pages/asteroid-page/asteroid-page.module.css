@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.link,
+.info {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.closeApproach {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.closeApproachList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  list-style: none;
+}

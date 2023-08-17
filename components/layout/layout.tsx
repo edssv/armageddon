@@ -9,18 +9,11 @@ import styles from './layout.module.css';
 export function Layout({ children }: React.PropsWithChildren) {
   return (
     <>
-      <div className="container">
-        <div className={styles.root}>
-          <Header />
-          <main className={styles.main}>{children}</main>
-          <Footer />
-          <Image
-            priority
-            src={EarthImage}
-            alt="Earth"
-            className={styles.earth}
-          />
-        </div>
+      <div className={styles.root}>
+        <Header />
+        <main className={styles.main}>{children}</main>
+        <Footer />
+        <Image priority src={EarthImage} alt="Earth" className={styles.earth} />
       </div>
     </>
   );

@@ -23,9 +23,11 @@
 
 @media (min-width: 1024px) {
   .root {
+    position: sticky;
     flex-direction: column;
     top: 124px;
-    right: 20%;
+    bottom: auto;
+    right: auto;
     width: fit-content;
     height: fit-content;
     border-radius: 24px;
