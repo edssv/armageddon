@@ -1,6 +1,6 @@
 import { env } from '@/env.mjs';
 
-import { Asteroid, GetAsteroidListResponse } from './asteroid.helper';
+import { GetAsteroidListResponse } from './asteroid.helper';
 
 export const AsteroidService = {
   async getAsteroidList() {

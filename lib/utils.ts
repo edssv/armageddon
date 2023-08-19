@@ -38,3 +38,7 @@ export function plural(count: number, messages: string[]) {
 
   return messages[2];
 }
+
+export function changeProtocol(url: string) {
+  return 'https' + url.split('http')[1];
+}

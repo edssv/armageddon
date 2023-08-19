@@ -4,8 +4,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Asteroid } from '@/services/asteroid/asteroid.helper';
 
-import { CloseAproach } from '../../close-approach/close-approach';
-import { Selector } from '../../selector/selector';
+import { CloseAproach } from '@/components/other/close-approach/close-approach';
+import { Selector } from '@/components/other/selector/selector';
+
 import styles from './asteroid-page.module.css';
 
 export function AsteroidPage({ data }: { data: Asteroid }) {

@@ -6,11 +6,12 @@ import { AsteroidService } from '@/services/asteroid/asteroid.service';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
+import { changeProtocol } from '@/lib/utils';
+import { Asteroid } from '@/components/other/asteroid/asteroid';
+import { Cart } from '@/components/other/cart/cart';
+import { Selector } from '@/components/other/selector/selector';
 import { AppContext } from '@/components/providers/context-provider';
-import { Selector } from '@/components/selector/selector';
 
-import { Asteroid } from '../../asteroid/asteroid';
-import { Cart } from '../cart/cart';
 import styles from './home-page.module.css';
 
 export function HomePage({
@@ -26,7 +27,7 @@ export function HomePage({
       return await AsteroidService.getNextAsteroids(pageParam);
     },
     {
-      getNextPageParam: (lastPage) => lastPage.links.next,
+      getNextPageParam: (lastPage) => changeProtocol(lastPage.links.next),
       enabled: false,
       initialData: { pages: [initialData], pageParams: [0] },
     }

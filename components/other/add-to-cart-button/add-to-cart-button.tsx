@@ -3,8 +3,8 @@
 import { useContext } from 'react';
 import { Asteroid } from '@/services/asteroid/asteroid.helper';
 
-import { AppContext } from '../providers/context-provider';
-import { Button } from '../ui/button/button';
+import { AppContext } from '../../providers/context-provider';
+import { Button } from '../../ui/button/button';
 
 interface AddToCartButtonProps {
   isInCart?: boolean;

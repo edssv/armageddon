@@ -4,10 +4,9 @@ import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { plural } from '@/lib/utils';
+import { Button } from '@/components/ui/button/button';
+import { AppContext } from '@/components/providers/context-provider';
 
-import { AppContext } from '../../providers/context-provider';
-import { Button } from '../../ui/button/button';
-import { Skeleton } from '../../ui/skeleton/skeleton';
 import styles from './cart.module.css';
 
 export function Cart() {

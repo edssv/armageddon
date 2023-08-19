@@ -8,7 +8,6 @@ import { formatDate, plural } from '@/lib/utils';
 import asteroidImage from '@/assets/images/pngegg.png';
 
 import { AddToCartButton } from '../add-to-cart-button/add-to-cart-button';
-import { Skeleton } from '../ui/skeleton/skeleton';
 import styles from './asteroid.module.css';
 
 interface AsteroidProps {
@@ -66,7 +65,7 @@ export function Asteroid({
             <path
               d="M0 3L5 5.88675L5 0.113249L0 3ZM129 3.00001L124 0.113259L124 5.88676L129 3.00001ZM4.5 3.5L124.5 3.50001L124.5 2.50001L4.5 2.5L4.5 3.5Z"
               fill="white"
-              fill-opacity="0.5"
+              fillOpacity="0.5"
             />
           </svg>
         </div>

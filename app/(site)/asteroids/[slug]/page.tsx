@@ -1,15 +1,11 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Asteroid } from '@/services/asteroid/asteroid.helper';
 import { AsteroidService } from '@/services/asteroid/asteroid.service';
 
 import { env } from '@/env.mjs';
 import { absoluteUrl } from '@/lib/utils';
-import { CloseAproach } from '@/components/close-approach/close-approach';
-import { Selector } from '@/components/selector/selector';
 
-import styles from './page.module.css';
 import { AsteroidPage } from '@/components/pages/asteroid-page/asteroid-page';
 
 interface AsteroidPageProps {
@@ -43,7 +39,6 @@ export async function generateMetadata({
   const ogUrl = new URL(`${url}/api/og`);
   ogUrl.searchParams.set('heading', asteroid.name);
   ogUrl.searchParams.set('type', 'Blog asteroid');
-  // ogUrl.searchParams.set('image', asteroid.cover.data.attributes.url);
   ogUrl.searchParams.set('mode', 'dark');
 
   return {
@@ -54,20 +49,11 @@ export async function generateMetadata({
       description: asteroid.name,
       type: 'article',
       url: absoluteUrl(`asteroids/${asteroid.id}`),
-      images: [
-        {
-          url: ogUrl.toString(),
-          width: 1200,
-          height: 630,
-          alt: asteroid.name,
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: asteroid.name,
       description: asteroid.name,
-      images: [ogUrl.toString()],
     },
   };
 }

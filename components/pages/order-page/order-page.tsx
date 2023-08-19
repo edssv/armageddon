@@ -3,7 +3,7 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 
-import { Asteroid } from '@/components/asteroid/asteroid';
+import { Asteroid } from '@/components/other/asteroid/asteroid';
 
 import { AppContext } from '../../providers/context-provider';
 import styles from './order-page.module.css';
